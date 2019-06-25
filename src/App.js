@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, css, keyframes } from "styled-components";
+
+const rotation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -22,13 +31,19 @@ const Button = styled.button`
 	font-weight: 600;
 	-webkit-appearance: none;
 	cursor: pointer;
-
 	&:active,
 	&:focus {
 		outline: none;
 	}
-
 	background-color: ${props => (props.danger ? "#e74c3c" : "#2ecc71")};
+
+	${props => {
+		if (props.danger) {
+			return css`
+				animation: ${rotation} ${props.rotationTime}s linear infinite;
+			`;
+		}
+	}}
 `;
 
 const Anchor = styled(Button)`
@@ -42,7 +57,9 @@ class App extends Component {
 				<GlobalStyle />
 				<Container>
 					<Button>Hello</Button>
-					<Button danger>Hello</Button>
+					<Button danger rotationTime={60}>
+						Hello
+					</Button>
 					<Anchor as="a" href="https://www.google.com">
 						Go to Google
 					</Anchor>
