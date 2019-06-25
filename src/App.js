@@ -6,6 +6,9 @@ const Container = styled.div`
 	height: 100vh;
 	width: 100%;
 	background-color: #95a5a6;
+	${Card} {
+		background-color: orange;
+	}
 `;
 
 const Card = styled.div`
