@@ -7,7 +7,7 @@ const Container = styled.div`
 	width: 100%;
 	background-color: #95a5a6;
 	${Card} {
-		background-color: orange;
+		background-color: ${props => props.theme.mainColor};
 	}
 `;
 
